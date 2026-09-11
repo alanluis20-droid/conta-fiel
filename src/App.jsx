@@ -1092,11 +1092,7 @@ function App() {
             </div>
 
             <div
-              className={`big ${
-                saldoAcumulado >= 0
-                  ? 'green'
-                  : 'red'
-              }`}
+        className="big accumulated-balance"
             >
               {formatarMoeda(
                 saldoAcumulado

@@ -1770,3 +1770,12 @@ input[type="number"] {
     font-size: 16px !important;
   }
 }
+
+/* Saldo acumulado em azul suave */
+.accumulated-balance {
+  color: #3b82c4 !important;
+}
+
+.card:has(.accumulated-balance) {
+  border-left: 4px solid #3b82c4 !important;
+}
