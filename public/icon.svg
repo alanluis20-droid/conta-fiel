@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#162235"/>
+      <stop offset="1" stop-color="#0b1422"/>
+    </linearGradient>
+    <linearGradient id="leaf" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#3f8f52"/>
+      <stop offset="1" stop-color="#9bcf55"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="512" rx="108" fill="url(#bg)"/>
+
+  <!-- CF monogram -->
+  <text x="256" y="337"
+        text-anchor="middle"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="190"
+        font-weight="700"
+        letter-spacing="-18"
+        fill="#f8f1df">CF</text>
+
+  <!-- Growing stem -->
+  <path d="M256 332 C238 286 246 232 267 190 C277 170 291 151 310 132"
+        fill="none"
+        stroke="url(#leaf)"
+        stroke-width="13"
+        stroke-linecap="round"/>
+
+  <!-- Main leaf -->
+  <path d="M270 198 C267 151 295 105 363 82 C367 139 343 181 270 198Z"
+        fill="url(#leaf)"/>
+
+  <!-- Small leaf -->
+  <path d="M257 223 C224 201 205 168 214 133 C253 145 273 177 257 223Z"
+        fill="url(#leaf)"/>
+
+  <!-- Leaf veins -->
+  <path d="M276 190 C302 158 327 126 356 96"
+        fill="none" stroke="#d9f29a" stroke-width="3.5" stroke-linecap="round" opacity=".8"/>
+  <path d="M255 214 C242 187 229 161 216 143"
+        fill="none" stroke="#d9f29a" stroke-width="3" stroke-linecap="round" opacity=".75"/>
+
+  <!-- Ground / growth -->
+  <path d="M112 355 Q256 318 400 355 Q256 342 112 355Z"
+        fill="#4f9b55"/>
+</svg>

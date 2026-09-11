@@ -1,0 +1,1763 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f4f5f7;
+  color: #111827;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+.container {
+  width: min(760px, 100%);
+  margin: 0 auto;
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
+header {
+  background: #111827;
+  color: white;
+  padding: 20px 0 22px;
+  border-radius: 0 0 24px 24px;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+h1 {
+  margin: 0;
+  font-size: 26px;
+}
+
+.subtitle {
+  margin-top: 3px;
+  opacity: 0.65;
+  font-size: 13px;
+}
+
+.logout {
+  background: #374151;
+  color: white;
+  border: 0;
+  border-radius: 9px;
+  padding: 9px 13px;
+}
+
+.main {
+  padding-top: 14px;
+  padding-bottom: 60px;
+}
+
+.month-selector {
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  gap: 8px;
+  margin-bottom: 5px;
+}
+
+.month-selector button {
+  border: 0;
+  border-radius: 10px;
+  background: #e5e7eb;
+  font-size: 24px;
+}
+
+.month-selector input {
+  width: 100%;
+}
+
+.month-title {
+  text-align: center;
+  font-weight: 750;
+  margin-bottom: 12px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 11px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: white;
+  color: #111827;
+}
+
+.card {
+  background: white;
+  border-radius: 17px;
+  padding: 15px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.label {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.big {
+  font-size: 23px;
+  font-weight: 800;
+  margin-top: 4px;
+}
+
+.green {
+  color: #15803d;
+}
+
+.red {
+  color: #b91c1c;
+}
+
+.tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.tab {
+  border: 0;
+  border-radius: 11px;
+  padding: 12px;
+  background: #e5e7eb;
+  font-weight: 750;
+}
+
+.tab.active {
+  color: white;
+}
+
+.income-tab.active {
+  background: #15803d;
+}
+
+.expense-tab.active {
+  background: #111827;
+}
+
+h2 {
+  font-size: 17px;
+  margin: 0 0 14px;
+}
+
+h3 {
+  font-size: 14px;
+  margin: 0 0 5px;
+}
+
+form {
+  display: grid;
+  gap: 10px;
+}
+
+label {
+  display: grid;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 24px;
+}
+
+.checkbox input {
+  width: auto;
+}
+
+.form-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.primary,
+.secondary {
+  flex: 1;
+  border: 0;
+  border-radius: 10px;
+  padding: 11px;
+  font-weight: 750;
+}
+
+.primary {
+  background: #111827;
+  color: white;
+}
+
+.secondary {
+  background: #e5e7eb;
+  color: #111827;
+}
+
+.message {
+  margin-top: 12px;
+  padding: 10px;
+  border-radius: 9px;
+  background: #f3f4f6;
+  font-size: 13px;
+}
+
+.category {
+  margin: 12px 0;
+}
+
+.category-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.category-name {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex: 0 0 9px;
+}
+
+.category-value {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.category-value span {
+  color: #6b7280;
+  font-size: 12px;
+}
+
+.bar {
+  height: 8px;
+  background: #edf0f2;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 7px;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 8px;
+}
+
+.statement-section {
+  margin-top: 4px;
+}
+
+.statement-section + .statement-section {
+  border-top: 1px solid #e5e7eb;
+  margin-top: 8px;
+  padding-top: 14px;
+}
+
+.transaction {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 8px;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.transaction:last-child {
+  border-bottom: 0;
+}
+
+.transaction-info strong {
+  display: block;
+}
+
+.transaction-info small {
+  display: block;
+  color: #6b7280;
+  font-size: 11px;
+  margin-top: 3px;
+}
+
+.transaction-value {
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.transaction-actions {
+  display: flex;
+  gap: 5px;
+}
+
+.edit,
+.delete {
+  border: 0;
+  border-radius: 8px;
+  padding: 7px 9px;
+}
+
+.edit {
+  background: #e5e7eb;
+}
+
+.delete {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.empty {
+  text-align: center;
+  color: #6b7280;
+  padding: 20px;
+}
+
+.small-empty {
+  padding: 10px 0;
+}
+
+.loading {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+}
+
+@media (max-width: 520px) {
+  .summary-grid,
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .checkbox {
+    padding-top: 5px;
+  }
+
+  .transaction {
+    grid-template-columns: 1fr auto;
+  }
+
+  .transaction-actions {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .transaction-value {
+    grid-column: 1;
+    grid-row: 2;
+  }
+}
+/* =========================================
+   PANORAMA ANUAL
+   ========================================= */
+
+.annual-panel {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 22px;
+  margin-top: 20px;
+  box-shadow: 0 3px 14px rgba(15, 23, 42, 0.06);
+}
+
+.annual-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.annual-top h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #111827;
+}
+
+.annual-top p {
+  margin: 5px 0 0;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.annual-year {
+  font-size: 18px;
+  font-weight: 700;
+  color: #334155;
+}
+
+/* RESUMO */
+
+.annual-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.annual-card {
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid #edf1f5;
+}
+
+.annual-card span {
+  display: block;
+  font-size: 12px;
+  color: #64748b;
+  margin-bottom: 7px;
+}
+
+.annual-card strong {
+  display: block;
+  font-size: 18px;
+}
+
+.blue-card {
+  background: #f4f8fc;
+}
+
+.red-card {
+  background: #fff6f6;
+}
+
+.light-blue-card {
+  background: #f4f8fc;
+}
+
+.green-card {
+  background: #f3faf6;
+}
+
+.green {
+  color: #15803d;
+}
+
+.red {
+  color: #dc2626;
+}
+
+/* GRÁFICOS */
+
+.annual-charts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.annual-chart-card {
+  background: #ffffff;
+  border: 1px solid #edf1f5;
+  border-radius: 15px;
+  padding: 18px;
+  min-width: 0;
+}
+
+.annual-chart-card h3 {
+  margin: 0 0 14px;
+  font-size: 15px;
+  color: #172033;
+}
+
+/* gráfico */
+
+.chart-wrapper {
+  width: 100%;
+  height: 190px;
+  position: relative;
+}
+
+.chart-wrapper svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.chart-months {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  margin-top: 8px;
+  color: #94a3b8;
+  font-size: 10px;
+  text-align: center;
+}
+
+.chart-legend {
+  display: flex;
+  gap: 18px;
+  margin-top: 13px;
+  font-size: 11px;
+  color: #64748b;
+}
+
+.chart-legend span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.chart-legend i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.legend-green {
+  background: #16a05d;
+}
+
+.legend-red {
+  background: #dc2626;
+}
+
+/* DESTINO DO DINHEIRO */
+
+.destination {
+  margin-bottom: 18px;
+}
+
+.destination:last-child {
+  margin-bottom: 0;
+}
+
+.destination-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 7px;
+}
+
+.destination-head strong {
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.destination-head span {
+  font-size: 11px;
+  color: #64748b;
+}
+
+.destination-bar {
+  height: 9px;
+  width: 100%;
+  background: #edf1f5;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.destination-bar div {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.destination-value {
+  margin-top: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+}
+
+/* RANKING */
+
+.annual-ranking {
+  margin-top: 14px;
+  padding: 18px;
+  border: 1px solid #edf1f5;
+  border-radius: 15px;
+}
+
+.annual-ranking h3 {
+  margin: 0 0 18px;
+  font-size: 15px;
+  color: #172033;
+}
+
+.ranking-row {
+  display: grid;
+  grid-template-columns: 175px 1fr 100px 45px;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 13px;
+}
+
+.ranking-row:last-child {
+  margin-bottom: 0;
+}
+
+.ranking-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #334155;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ranking-name span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex: 0 0 8px;
+}
+
+.ranking-bar {
+  height: 7px;
+  background: #edf1f5;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.ranking-bar div {
+  height: 100%;
+  border-radius: 999px;
+}
+
+.ranking-row strong {
+  text-align: right;
+  font-size: 13px;
+  color: #172033;
+}
+
+.ranking-percent {
+  text-align: right;
+  font-size: 11px;
+  color: #64748b;
+}
+
+.annual-empty {
+  color: #64748b;
+  font-size: 13px;
+  padding: 5px 0;
+}
+
+/* RESPONSIVO */
+
+@media (max-width: 760px) {
+
+  .annual-panel {
+    padding: 16px;
+  }
+
+  .annual-summary {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .annual-charts {
+    grid-template-columns: 1fr;
+  }
+
+  .ranking-row {
+    grid-template-columns: 130px 1fr 85px;
+  }
+
+  .ranking-percent {
+    display: none;
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  .annual-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .annual-top {
+    margin-bottom: 16px;
+  }
+
+  .annual-chart-card {
+    padding: 14px;
+  }
+
+  .chart-wrapper {
+    height: 170px;
+  }
+
+  .ranking-row {
+    grid-template-columns: 115px 1fr;
+    gap: 8px;
+  }
+
+  .ranking-row strong {
+    grid-column: 1 / -1;
+    text-align: left;
+    margin-top: -4px;
+  }
+
+}
+/* =========================================
+   CONTA FIEL — FASE 4.1
+   Cabeçalho + área superior
+   ========================================= */
+
+header {
+  background: #111827;
+  color: white;
+  padding: 24px 0 26px;
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 4px 18px rgba(17, 24, 39, 0.10);
+}
+
+.header-content {
+  min-height: 48px;
+}
+
+h1 {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  margin-top: 4px;
+  font-size: 14px;
+  opacity: 0.72;
+}
+
+.logout {
+  padding: 9px 15px;
+  border-radius: 10px;
+  background: #374151;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.logout:hover {
+  background: #4b5563;
+  transform: translateY(-1px);
+}
+
+.main {
+  padding-top: 20px;
+}
+
+/* Seletor de mês */
+
+.month-selector {
+  grid-template-columns: 46px 1fr 46px;
+  gap: 10px;
+  margin-bottom: 7px;
+}
+
+.month-selector button {
+  border-radius: 11px;
+  background: #e5e7eb;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.month-selector button:hover {
+  background: #dbe0e5;
+  transform: translateY(-1px);
+}
+
+.month-selector input {
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Título do mês */
+
+.month-title {
+  font-size: 15px;
+  margin-bottom: 16px;
+}
+
+/* Resumo */
+
+.summary-grid {
+  gap: 12px;
+}
+
+.card {
+  border-radius: 16px;
+  padding: 17px;
+  box-shadow: 0 3px 14px rgba(15, 23, 42, 0.055);
+}
+
+.label {
+  font-size: 13px;
+}
+
+.big {
+  font-size: 25px;
+  margin-top: 5px;
+}
+
+/* Botões principais */
+
+.tabs {
+  gap: 10px;
+  margin: 14px 0;
+}
+
+.tab {
+  padding: 13px;
+  border-radius: 11px;
+  font-size: 14px;
+  transition: transform 0.15s ease, opacity 0.2s ease;
+}
+
+.tab:hover {
+  transform: translateY(-1px);
+  opacity: 0.94;
+}
+
+.income-tab.active {
+  background: #15803d;
+}
+
+.expense-tab.active {
+  background: #111827;
+}
+
+/* Remove possíveis linhas/decorações indesejadas */
+header::before,
+header::after,
+.tab::before,
+.tab::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* Mobile */
+
+@media (max-width: 520px) {
+  header {
+    padding: 20px 0 22px;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+  }
+
+  .main {
+    padding-top: 14px;
+  }
+
+  .big {
+    font-size: 23px;
+  }
+}
+/* =========================================
+   CONTA FIEL — RESUMO FINANCEIRO
+   ========================================= */
+
+.summary-grid {
+  gap: 14px;
+  margin-bottom: 4px;
+}
+
+.summary-grid .card {
+  position: relative;
+  min-height: 86px;
+  padding: 17px 18px;
+  border: 1px solid #edf0f3;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.summary-grid .card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 18px rgba(15, 23, 42, 0.08);
+}
+
+.summary-grid .label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.summary-grid .big {
+  font-size: 26px;
+  line-height: 1.15;
+  letter-spacing: -0.4px;
+}
+
+/* Entrada */
+
+.summary-grid .card:nth-child(1) {
+  border-left: 4px solid #16a05d;
+}
+
+/* Gastos */
+
+.summary-grid .card:nth-child(2) {
+  border-left: 4px solid #dc2626;
+}
+
+/* Saldo do mês */
+
+.summary-grid .card:nth-child(3) {
+  border-left: 4px solid #16a05d;
+}
+
+/* Saldo acumulado */
+
+.summary-grid .card:nth-child(4) {
+  border-left: 4px solid #2563eb;
+}
+
+/* Mobile */
+
+@media (max-width: 520px) {
+  .summary-grid {
+    gap: 10px;
+  }
+
+  .summary-grid .card {
+    min-height: 78px;
+    padding: 14px;
+  }
+
+  .summary-grid .big {
+    font-size: 23px;
+  }
+}
+/* =========================================
+   CONTA FIEL — FORMULÁRIO DE LANÇAMENTO
+   ========================================= */
+
+.tabs {
+  margin: 16px 0 12px;
+}
+
+.tab {
+  min-height: 46px;
+  font-size: 14px;
+}
+
+.card form {
+  gap: 12px;
+}
+
+.card label {
+  color: #1f2937;
+  font-size: 13px;
+}
+
+.card input,
+.card select {
+  min-height: 43px;
+  padding: 10px 12px;
+  border-color: #dfe4ea;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card input:focus,
+.card select:focus {
+  outline: none;
+  border-color: #15803d;
+  box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.10);
+}
+
+.form-grid {
+  gap: 12px;
+}
+
+.checkbox {
+  min-height: 43px;
+  padding-top: 24px;
+}
+
+.checkbox input {
+  min-height: auto;
+  accent-color: #15803d;
+}
+
+.form-actions {
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.primary,
+.secondary {
+  min-height: 43px;
+  transition: transform 0.15s ease, opacity 0.2s ease;
+}
+
+.primary:hover,
+.secondary:hover {
+  transform: translateY(-1px);
+  opacity: 0.94;
+}
+
+/* Destaque para o formulário ativo */
+
+.tabs + .card {
+  border: 1px solid #edf0f3;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.055);
+}
+
+/* Mobile */
+
+@media (max-width: 520px) {
+  .tab {
+    min-height: 44px;
+  }
+
+  .card input,
+  .card select {
+    min-height: 42px;
+  }
+
+  .checkbox {
+    padding-top: 5px;
+  }
+}
+/* =========================================
+   CONTA FIEL — CATEGORIAS E LANÇAMENTOS
+   ========================================= */
+
+.category {
+  margin: 14px 0;
+}
+
+.category-head {
+  margin-bottom: 2px;
+}
+
+.category-name {
+  font-size: 13px;
+}
+
+.category-value {
+  font-size: 13px;
+}
+
+.category-value strong {
+  font-weight: 750;
+}
+
+.category-value span {
+  font-size: 11px;
+}
+
+.bar {
+  height: 7px;
+  margin-top: 6px;
+}
+
+/* Lançamentos */
+
+.statement-section {
+  padding: 0 2px;
+}
+
+.statement-section h3 {
+  font-size: 13px;
+  font-weight: 750;
+  color: #172033;
+  margin-bottom: 3px;
+}
+
+.transaction {
+  padding: 13px 0;
+  gap: 10px;
+}
+
+.transaction-info strong {
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.transaction-info small {
+  font-size: 10px;
+}
+
+.transaction-value {
+  font-size: 12px;
+}
+
+.transaction-actions {
+  gap: 4px;
+}
+
+.edit,
+.delete {
+  min-width: 30px;
+  min-height: 30px;
+  padding: 6px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit {
+  background: #eef0f3;
+}
+
+.delete {
+  background: #fff0f0;
+}
+
+/* Separadores mais discretos */
+
+.statement-section + .statement-section {
+  border-top-color: #edf0f3;
+}
+
+/* Categorias e lançamentos no mobile */
+
+@media (max-width: 520px) {
+  .category {
+    margin: 12px 0;
+  }
+
+  .transaction {
+    padding: 12px 0;
+  }
+
+  .transaction-value {
+    font-size: 12px;
+  }
+}
+/* =========================================
+   CONTA FIEL — PANORAMA ANUAL
+   ========================================= */
+
+.annual-panel {
+  margin-top: 16px;
+  padding: 20px;
+  border-radius: 17px;
+  border: 1px solid #edf0f3;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.055);
+}
+
+.annual-top {
+  margin-bottom: 18px;
+}
+
+.annual-top h2 {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.annual-top p {
+  margin-top: 4px;
+  font-size: 12px;
+}
+
+.annual-year {
+  font-size: 16px;
+}
+
+/* Cards anuais */
+
+.annual-summary {
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.annual-card {
+  padding: 14px;
+  border-radius: 13px;
+}
+
+.annual-card span {
+  font-size: 11px;
+  margin-bottom: 6px;
+}
+
+.annual-card strong {
+  font-size: 16px;
+}
+
+/* Gráficos */
+
+.annual-charts {
+  gap: 12px;
+}
+
+.annual-chart-card {
+  padding: 15px;
+  border-radius: 14px;
+}
+
+.annual-chart-card h3 {
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.chart-wrapper {
+  height: 175px;
+}
+
+.chart-months {
+  margin-top: 7px;
+  font-size: 9px;
+}
+
+.chart-legend {
+  gap: 14px;
+  margin-top: 11px;
+  font-size: 10px;
+}
+
+/* Destino do dinheiro */
+
+.destination {
+  margin-bottom: 15px;
+}
+
+.destination-head {
+  margin-bottom: 6px;
+}
+
+.destination-head strong {
+  font-size: 12px;
+}
+
+.destination-head span {
+  font-size: 10px;
+}
+
+.destination-bar {
+  height: 8px;
+}
+
+.destination-value {
+  margin-top: 4px;
+  font-size: 12px;
+}
+
+/* Ranking */
+
+.annual-ranking {
+  margin-top: 12px;
+  padding: 15px;
+  border-radius: 14px;
+}
+
+.annual-ranking h3 {
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.ranking-row {
+  grid-template-columns: 150px 1fr 90px 40px;
+  gap: 10px;
+  margin-bottom: 11px;
+}
+
+.ranking-name {
+  font-size: 12px;
+}
+
+.ranking-row strong {
+  font-size: 12px;
+}
+
+.ranking-percent {
+  font-size: 10px;
+}
+
+/* Mobile */
+
+@media (max-width: 760px) {
+  .annual-panel {
+    padding: 16px;
+  }
+
+  .annual-summary {
+    gap: 8px;
+  }
+
+  .annual-chart-card {
+    padding: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .annual-panel {
+    padding: 14px;
+  }
+
+  .annual-card {
+    padding: 13px;
+  }
+
+  .annual-card strong {
+    font-size: 15px;
+  }
+
+  .chart-wrapper {
+    height: 165px;
+  }
+}
+/* =========================================
+   CONTA FIEL — NAVEGAÇÃO ENTRE MESES
+   ========================================= */
+
+.month-selector button {
+  position: relative;
+  min-height: 46px;
+  font-weight: 800;
+  color: #111827;
+  border: 1px solid #e2e6eb;
+  background: #eef0f3;
+  transition: all 0.15s ease;
+}
+
+.month-selector button:hover {
+  background: #e2e5e9;
+  border-color: #d5dbe1;
+  transform: translateY(-1px);
+}
+
+.month-selector button:active {
+  transform: translateY(0);
+}
+
+.month-selector input {
+  min-height: 46px;
+  border: 1px solid #dfe4ea;
+  font-size: 14px;
+  text-align: center;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.month-selector input:focus {
+  outline: none;
+  border-color: #15803d;
+  box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.10);
+}
+
+.month-title {
+  font-size: 14px;
+  color: #111827;
+  letter-spacing: -0.1px;
+}
+/* =========================================
+   CONTA FIEL — AÇÕES RÁPIDAS
+   ========================================= */
+
+.tabs {
+  gap: 10px;
+  margin: 16px 0 12px;
+}
+
+.tab {
+  min-height: 50px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 800;
+  border: 1px solid transparent;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.tab:hover {
+  transform: translateY(-1px);
+}
+
+.tab.active {
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.10);
+}
+
+.income-tab.active {
+  background: #15803d;
+}
+
+.expense-tab.active {
+  background: #111827;
+}
+
+.income-tab:not(.active),
+.expense-tab:not(.active) {
+  background: #eef0f3;
+  color: #374151;
+  border-color: #e1e5e9;
+}
+
+/* Formulário ativo */
+
+.tabs + .card {
+  margin-top: 0;
+}
+
+.tabs + .card h2 {
+  font-size: 17px;
+  margin-bottom: 16px;
+}
+
+/* Campo de valor */
+
+input[type="number"] {
+  font-weight: 650;
+}
+
+/* Botão salvar */
+
+.form-actions .primary {
+  font-size: 14px;
+  font-weight: 800;
+  min-height: 45px;
+}
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 520px) {
+  .tab {
+    min-height: 48px;
+  }
+}
+/* =========================================
+   CONTA FIEL — EXPERIÊNCIA MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+  .container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  header {
+    padding: 18px 0 20px;
+    border-radius: 0 0 18px 18px;
+  }
+
+  .header-content {
+    gap: 12px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .subtitle {
+    font-size: 12px;
+  }
+
+  .logout {
+    padding: 8px 11px;
+    font-size: 12px;
+  }
+
+  .main {
+    padding-top: 12px;
+    padding-bottom: 40px;
+  }
+
+  /* Mês */
+
+  .month-selector {
+    grid-template-columns: 42px 1fr 42px;
+    gap: 7px;
+  }
+
+  .month-selector button,
+  .month-selector input {
+    min-height: 44px;
+  }
+
+  .month-title {
+    margin-bottom: 12px;
+  }
+
+  /* Resumo */
+
+  .summary-grid {
+    gap: 9px;
+  }
+
+  .summary-grid .card {
+    min-height: 76px;
+    padding: 13px;
+  }
+
+  .summary-grid .big {
+    font-size: 21px;
+  }
+
+  /* Ações */
+
+  .tabs {
+    gap: 8px;
+    margin: 12px 0 10px;
+  }
+
+  .tab {
+    min-height: 46px;
+    padding: 10px 8px;
+    font-size: 13px;
+  }
+
+  /* Formulário */
+
+  .card {
+    padding: 14px;
+    border-radius: 15px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .checkbox {
+    padding-top: 3px;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .primary,
+  .secondary {
+    min-height: 44px;
+  }
+
+  /* Lançamentos */
+
+  .transaction {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 7px;
+  }
+
+  .transaction-info {
+    min-width: 0;
+  }
+
+  .transaction-info strong {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .transaction-value {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .transaction-actions {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  /* Panorama */
+
+  .annual-panel {
+    margin-top: 12px;
+    padding: 13px;
+  }
+
+  .annual-summary {
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+  }
+
+  .annual-card {
+    padding: 12px;
+  }
+
+  .annual-card strong {
+    font-size: 14px;
+  }
+
+  .annual-charts {
+    grid-template-columns: 1fr;
+  }
+
+  .annual-chart-card {
+    padding: 12px;
+  }
+
+  .chart-wrapper {
+    height: 160px;
+  }
+
+  .ranking-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+  }
+
+  .ranking-bar {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .ranking-row strong {
+    grid-column: 2;
+    grid-row: 1;
+    text-align: right;
+  }
+
+  .ranking-percent {
+    display: none;
+  }
+}
+/* =========================================
+   CONTA FIEL — CAMPO VALOR
+   ========================================= */
+
+.card input[type="number"] {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.card input[type="date"] {
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .card input[type="number"] {
+    min-height: 48px;
+    font-size: 17px;
+  }
+
+  .card input[type="date"] {
+    min-height: 46px;
+  }
+
+  .card select {
+    min-height: 46px;
+  }
+}
+/* =========================================
+   CONTA FIEL — FEEDBACK E MENSAGENS
+   ========================================= */
+
+.message {
+  margin-top: 12px;
+  padding: 11px 13px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #f8fafc;
+  color: #334155;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* Mensagem de sucesso */
+
+.message.success {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+  color: #166534;
+}
+
+/* Mensagem de erro */
+
+.message.error {
+  background: #fef2f2;
+  border-color: #fecaca;
+  color: #991b1b;
+}
+/* =========================================
+   CONTA FIEL — EDIÇÃO E EXCLUSÃO
+   ========================================= */
+
+.transaction-actions {
+  align-items: center;
+}
+
+.edit,
+.delete {
+  min-width: 32px;
+  min-height: 32px;
+  border: 1px solid transparent;
+  font-size: 12px;
+  font-weight: 700;
+  transition: all 0.15s ease;
+}
+
+.edit:hover {
+  background: #e2e6eb;
+  border-color: #d5dbe1;
+  transform: translateY(-1px);
+}
+
+.delete:hover {
+  background: #fee2e2;
+  border-color: #fecaca;
+  transform: translateY(-1px);
+}
+
+.edit:active,
+.delete:active {
+  transform: translateY(0);
+}
+
+/* Não deixar os botões ficarem pequenos demais no celular */
+
+@media (max-width: 600px) {
+  .edit,
+  .delete {
+    min-width: 36px;
+    min-height: 36px;
+    padding: 7px 9px;
+  }
+
+  .transaction-actions {
+    gap: 6px;
+  }
+}
+/* =========================================
+   CONTA FIEL — MODO EDIÇÃO
+   ========================================= */
+
+.tabs + .card:has(h2:first-child) {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-actions .secondary {
+  border: 1px solid #dfe4ea;
+}
+
+.form-actions .secondary:hover {
+  background: #e5e7eb;
+}
+
+@media (max-width: 600px) {
+  .form-actions .secondary {
+    min-height: 44px;
+  }
+}
