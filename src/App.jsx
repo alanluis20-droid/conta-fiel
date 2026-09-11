@@ -1029,11 +1029,6 @@ function App() {
           </button>
 
         </div>
-
-        <div className="month-title">
-          {formatarMes(mes)}
-        </div>
-
         {/* RESUMO */}
 
         <div className="summary-grid">
