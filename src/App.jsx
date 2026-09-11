@@ -134,7 +134,13 @@ function App() {
   }
 
   async function sair() {
-    await supabase.auth.signOut()
+    const { error } = await supabase.auth.signOut()
+
+    if (error) {
+      setMensagem('Erro ao sair: ' + error.message)
+      return
+    }
+
     setLancamentos([])
   }
 
@@ -560,6 +566,9 @@ function App() {
           )
         }
 
+        setMensagem(
+          '✓ Lançamento atualizado com sucesso.'
+        )
       }
 
       // =========================
@@ -597,15 +606,11 @@ function App() {
           )
         }
 
+        setMensagem('✓ Lançamento salvo com sucesso.')
       }
-
-      const mensagemSucesso = editando
-        ? 'Lançamento atualizado com sucesso.'
-        : 'Lançamento salvo com sucesso.'
 
       limparFormulario()
       await carregarLancamentos()
-      setMensagem(mensagemSucesso)
 
     } catch (error) {
       console.error(error)
@@ -1284,16 +1289,17 @@ function App() {
           </form>
 
           {mensagem && (
-            <div
-              className={
-                mensagem.startsWith('Erro')
-                  ? 'message error'
-                  : 'message success'
-              }
-            >
-              {mensagem}
-            </div>
-          )}
+  <div
+    className={
+      mensagem.startsWith('Erro')
+        ? 'message error'
+        : 'message success'
+    }
+  >
+    {mensagem.startsWith('Erro') ? '⚠️ ' : '✓ '}
+    {mensagem}
+  </div>
+)}
 
         </section>
 

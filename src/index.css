@@ -1761,3 +1761,12 @@ input[type="number"] {
     min-height: 44px;
   }
 }
+
+/* Correção iPhone: evita zoom ao tocar nos campos */
+@media (max-width: 600px) {
+  .card input,
+  .card select,
+  .card textarea {
+    font-size: 16px !important;
+  }
+}
