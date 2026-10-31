@@ -56,6 +56,7 @@ function App() {
   const [mensagemLogin, setMensagemLogin] = useState('')
 
   const [mes, setMes] = useState(mesAtual)
+  const [mesDigitado, setMesDigitado] = useState(`${mesAtual.slice(5, 7)}/${mesAtual.slice(0, 4)}`)
   const [lancamentos, setLancamentos] = useState([])
   const [carregandoDados, setCarregandoDados] = useState(false)
   const [categoriasExpandidas, setCategoriasExpandidas] = useState({})
@@ -260,14 +261,18 @@ function App() {
     const d = new Date(`${mes}-01T12:00:00`)
     d.setMonth(d.getMonth() - 1)
 
-    setMes(d.toISOString().slice(0, 7))
+    const novoMes = d.toISOString().slice(0, 7)
+    setMes(novoMes)
+    setMesDigitado(`${novoMes.slice(5, 7)}/${novoMes.slice(0, 4)}`)
   }
 
   function mesSeguinte() {
     const d = new Date(`${mes}-01T12:00:00`)
     d.setMonth(d.getMonth() + 1)
 
-    setMes(d.toISOString().slice(0, 7))
+    const novoMes = d.toISOString().slice(0, 7)
+    setMes(novoMes)
+    setMesDigitado(`${novoMes.slice(5, 7)}/${novoMes.slice(0, 4)}`)
   }
 
   // =========================
@@ -1016,11 +1021,30 @@ function App() {
           </button>
 
           <input
-            type="month"
-            value={mes}
-            onChange={(e) =>
-              setMes(e.target.value)
-            }
+            className="month-input"
+            type="text"
+            inputMode="numeric"
+            autoComplete="off"
+            aria-label="Mês e ano"
+            placeholder="MM/AAAA"
+            maxLength={7}
+            value={mesDigitado}
+            onChange={(e) => {
+              const numeros = e.target.value.replace(/\D/g, '').slice(0, 6)
+              const formatado = numeros.length > 2
+                ? `${numeros.slice(0, 2)}/${numeros.slice(2)}`
+                : numeros
+              setMesDigitado(formatado)
+              if (numeros.length === 6) {
+                const mm = Number(numeros.slice(0, 2))
+                const yyyy = numeros.slice(2)
+                if (mm >= 1 && mm <= 12) setMes(`${yyyy}-${String(mm).padStart(2, '0')}`)
+              }
+            }}
+            onBlur={() => setMesDigitado(`${mes.slice(5, 7)}/${mes.slice(0, 4)}`)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') e.currentTarget.blur()
+            }}
           />
 
           <button
@@ -1219,6 +1243,7 @@ function App() {
                 Data
 
                 <input
+                  className="date-input"
                   type="date"
                   value={data}
                   onChange={(e) =>

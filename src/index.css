@@ -1833,3 +1833,155 @@ input[type="number"] {
   .category-expense { gap: 6px; }
   .category-expense .transaction-actions button { min-width: 28px; min-height: 28px; }
 }
+
+/* =========================================
+   CONTA FIEL — REFINAMENTO VISUAL RESPONSIVO
+   ========================================= */
+:root {
+  color-scheme: light;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background: #f5f7fa;
+  color: #172033;
+  letter-spacing: -0.01em;
+}
+
+.app { min-height: 100vh; }
+.container { width: min(920px, 100%); padding-left: 20px; padding-right: 20px; }
+header {
+  padding: 22px 0 24px;
+  background: linear-gradient(125deg, #111b2d 0%, #1d2b43 100%);
+  border-radius: 0 0 26px 26px;
+  box-shadow: 0 8px 28px rgba(17, 27, 45, .12);
+}
+h1 { font-size: 25px; font-weight: 800; letter-spacing: -.045em; }
+.subtitle { color: #c5cfdd; opacity: 1; font-size: 12px; letter-spacing: .015em; }
+.logout {
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(255,255,255,.09);
+  border-radius: 12px;
+  padding: 10px 15px;
+  transition: background .18s ease, transform .18s ease;
+}
+.logout:hover { background: rgba(255,255,255,.16); }
+.main { padding-top: 22px; padding-bottom: max(48px, env(safe-area-inset-bottom)); }
+.month-selector {
+  grid-template-columns: 46px minmax(0, 1fr) 46px;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.month-selector button {
+  min-width: 44px;
+  min-height: 46px;
+  border: 1px solid #e4e9f0;
+  border-radius: 13px;
+  background: #fff;
+  color: #26364d;
+  font-size: 25px;
+  box-shadow: 0 2px 8px rgba(25, 40, 60, .04);
+  transition: transform .16s ease, background .16s ease;
+}
+.month-selector button:active { transform: scale(.96); background: #edf2f8; }
+.month-selector .month-input {
+  min-width: 0;
+  min-height: 46px;
+  padding: 10px 14px;
+  border: 1px solid #e1e7ef;
+  border-radius: 13px;
+  background: #fff;
+  color: #1b2b42;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 750;
+  letter-spacing: .035em;
+  box-shadow: 0 2px 8px rgba(25, 40, 60, .04);
+  font-variant-numeric: tabular-nums;
+}
+input, select {
+  min-width: 0;
+  min-height: 44px;
+  border: 1px solid #dfe5ed;
+  border-radius: 11px;
+  padding: 11px 12px;
+  transition: border-color .16s ease, box-shadow .16s ease;
+}
+input:focus, select:focus {
+  outline: none;
+  border-color: #7d9fc8;
+  box-shadow: 0 0 0 3px rgba(82, 130, 190, .12);
+}
+.card {
+  border: 1px solid #edf0f4;
+  border-radius: 18px;
+  padding: 18px;
+  margin-bottom: 14px;
+  box-shadow: 0 5px 18px rgba(24, 39, 60, .045);
+}
+.summary-grid { gap: 12px; }
+.summary-grid .card { min-width: 0; }
+.label { color: #718096; font-size: 12px; font-weight: 600; }
+.big { font-size: clamp(19px, 2.5vw, 25px); letter-spacing: -.035em; overflow-wrap: anywhere; }
+.tabs { gap: 10px; margin: 14px 0; }
+.tab { min-height: 46px; border-radius: 12px; transition: transform .16s ease, filter .16s ease; }
+.tab:active, .primary:active, .secondary:active { transform: scale(.99); }
+.primary, .secondary { min-height: 46px; border-radius: 12px; }
+.primary { background: #17243a; }
+.primary:hover { background: #263954; }
+.secondary { background: #edf1f6; }
+form { gap: 12px; }
+label { min-width: 0; color: #334155; font-size: 12px; font-weight: 650; }
+.form-grid { gap: 12px; }
+.date-input {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 10px 9px;
+  font-size: 16px;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.checkbox { align-self: end; min-height: 44px; padding: 0 0 10px; }
+.checkbox input { min-height: auto; accent-color: #243954; }
+.category, .transaction, .category-expense { min-width: 0; }
+.transaction { gap: 10px; }
+.transaction-info { min-width: 0; overflow-wrap: anywhere; }
+.transaction-value { font-variant-numeric: tabular-nums; }
+.message { border: 1px solid #e7ebf0; border-radius: 12px; padding: 12px 14px; }
+.annual-panel { border: 1px solid #edf0f4; box-shadow: 0 5px 18px rgba(24,39,60,.045); }
+
+@media (max-width: 600px) {
+  .container { padding-left: 14px; padding-right: 14px; }
+  header { padding: 17px 0 19px; border-radius: 0 0 20px 20px; }
+  h1 { font-size: 22px; }
+  .main { padding-top: 15px; }
+  .month-selector { grid-template-columns: 42px minmax(0, 1fr) 42px; gap: 7px; margin-bottom: 12px; }
+  .month-selector button { min-width: 42px; min-height: 44px; }
+  .month-selector .month-input { min-height: 44px; padding: 8px 5px; font-size: 16px; }
+  .summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+  .summary-grid .card { padding: 13px 12px; border-radius: 15px; }
+  .big { font-size: clamp(16px, 4.5vw, 20px); }
+  .form-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 9px; }
+  .form-grid > * { min-width: 0; }
+  .card { padding: 15px; border-radius: 16px; }
+  .date-input { width: 100%; font-size: 16px !important; padding-right: 5px; }
+  .checkbox { padding: 0 0 8px; font-size: 11px; }
+  .annual-panel { padding: 15px; }
+  .annual-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 380px) {
+  .container { padding-left: 11px; padding-right: 11px; }
+  .summary-grid { gap: 7px; }
+  .summary-grid .card { padding: 11px 9px; }
+  .big { font-size: 16px; }
+  .form-grid { grid-template-columns: minmax(0, 1fr); }
+  .checkbox { padding-top: 2px; }
+  .transaction { grid-template-columns: minmax(0, 1fr) auto; }
+  .transaction-actions { gap: 4px; }
+}
