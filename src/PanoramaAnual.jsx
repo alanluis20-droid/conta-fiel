@@ -17,53 +17,12 @@ const CORES = {
   'Estudos': '#aebbd3',
 }
 
-const MESES = [
-  'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
-  'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'
-]
 
 function moeda(valor) {
   return new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL',
   }).format(Number(valor) || 0)
-}
-
-function valorCompacto(valor) {
-  const n = Number(valor) || 0
-
-  if (Math.abs(n) >= 1000) {
-    return `${(n / 1000).toFixed(1).replace('.', ',')}k`
-  }
-
-  return String(Math.round(n))
-}
-
-function pontosGrafico(valores, largura = 420, altura = 180) {
-  const max = Math.max(...valores, 1)
-  const min = Math.min(...valores, 0)
-  const intervalo = max - min || 1
-
-  return valores.map((valor, index) => {
-    const x =
-      valores.length === 1
-        ? largura / 2
-        : (index / (valores.length - 1)) * largura
-
-    const y =
-      altura -
-      ((valor - min) / intervalo) * altura
-
-    return { x, y }
-  })
-}
-
-function linhaSVG(pontos) {
-  return pontos
-    .map((ponto, index) =>
-      `${index === 0 ? 'M' : 'L'} ${ponto.x} ${ponto.y}`
-    )
-    .join(' ')
 }
 
 export default function PanoramaAnual({
@@ -150,64 +109,6 @@ export default function PanoramaAnual({
     entradas - despesas
 
   // =========================
-  // DADOS MENSAIS
-  // =========================
-
-  const dadosMensais = useMemo(() => {
-    let acumulado = 0
-
-    return MESES.map((_, indice) => {
-      const mesNumero =
-        String(indice + 1).padStart(2, '0')
-
-      const chave =
-        `${ano}-${mesNumero}`
-
-      const registros =
-        dadosAno.filter(
-          item =>
-            item.data.slice(0, 7) === chave
-        )
-
-      const entrada =
-        registros
-          .filter(
-            item =>
-              item.tipo === 'entrada'
-          )
-          .reduce(
-            (total, item) =>
-              total + Number(item.valor),
-            0
-          )
-
-      // Todas as saídas entram aqui,
-      // inclusive Reserva e Dívidas.
-      const saida =
-        registros
-          .filter(
-            item =>
-              item.tipo === 'saida'
-          )
-          .reduce(
-            (total, item) =>
-              total + Number(item.valor),
-            0
-          )
-
-      acumulado +=
-        entrada - saida
-
-      return {
-        entrada,
-        saida,
-        saldo: entrada - saida,
-        acumulado,
-      }
-    })
-  }, [dadosAno, ano])
-
-  // =========================
   // CATEGORIAS
   // =========================
 
@@ -230,40 +131,6 @@ export default function PanoramaAnual({
         (a, b) => b[1] - a[1]
       )
   }, [dadosAno])
-
-  // =========================
-  // GRÁFICOS
-  // =========================
-
-  const entradasMensais =
-    dadosMensais.map(
-      item => item.entrada
-    )
-
-  const despesasMensais =
-    dadosMensais.map(
-      item => item.saida
-    )
-
-  const acumulados =
-    dadosMensais.map(
-      item => item.acumulado
-    )
-
-  const pontosEntrada =
-    pontosGrafico(
-      entradasMensais
-    )
-
-  const pontosDespesa =
-    pontosGrafico(
-      despesasMensais
-    )
-
-  const pontosAcumulado =
-    pontosGrafico(
-      acumulados
-    )
 
   const maiorCategoria =
     categorias.length
@@ -372,176 +239,9 @@ export default function PanoramaAnual({
 
       </div>
 
-      {/* GRÁFICOS PRINCIPAIS */}
+      {/* DISTRIBUIÇÃO DO DINHEIRO — sem gráficos de evolução */}
 
       <div className="annual-charts">
-
-        {/* EVOLUÇÃO MENSAL */}
-
-        <div className="annual-chart-card">
-
-          <h3>
-            Evolução mensal
-          </h3>
-
-          <div className="chart-wrapper">
-
-            <svg
-              viewBox="0 0 420 220"
-              preserveAspectRatio="none"
-            >
-
-              {[0, 1, 2, 3].map(
-                linha => (
-                  <line
-                    key={linha}
-                    x1="0"
-                    x2="420"
-                    y1={linha * 60 + 10}
-                    y2={linha * 60 + 10}
-                    stroke="#e8edf2"
-                    strokeWidth="1"
-                  />
-                )
-              )}
-
-              <path
-                d={linhaSVG(
-                  pontosEntrada
-                )}
-                fill="none"
-                stroke="#16a05d"
-                strokeWidth="3"
-              />
-
-              <path
-                d={linhaSVG(
-                  pontosDespesa
-                )}
-                fill="none"
-                stroke="#dc2626"
-                strokeWidth="3"
-              />
-
-              {pontosEntrada.map(
-                (ponto, i) => (
-                  <circle
-                    key={`e${i}`}
-                    cx={ponto.x}
-                    cy={ponto.y}
-                    r="4"
-                    fill="#16a05d"
-                  />
-                )
-              )}
-
-              {pontosDespesa.map(
-                (ponto, i) => (
-                  <circle
-                    key={`d${i}`}
-                    cx={ponto.x}
-                    cy={ponto.y}
-                    r="4"
-                    fill="#dc2626"
-                  />
-                )
-              )}
-
-            </svg>
-
-          </div>
-
-          <div className="chart-months">
-            {MESES.map(
-              mes => (
-                <span key={mes}>
-                  {mes}
-                </span>
-              )
-            )}
-          </div>
-
-          <div className="chart-legend">
-
-            <span>
-              <i className="legend-green" />
-              Entradas
-            </span>
-
-            <span>
-              <i className="legend-red" />
-              Despesas
-            </span>
-
-          </div>
-
-        </div>
-
-        {/* SALDO ACUMULADO */}
-
-        <div className="annual-chart-card">
-
-          <h3>
-            Saldo acumulado
-          </h3>
-
-          <div className="chart-wrapper">
-
-            <svg
-              viewBox="0 0 420 220"
-              preserveAspectRatio="none"
-            >
-
-              {[0, 1, 2, 3].map(
-                linha => (
-                  <line
-                    key={linha}
-                    x1="0"
-                    x2="420"
-                    y1={linha * 60 + 10}
-                    y2={linha * 60 + 10}
-                    stroke="#e8edf2"
-                    strokeWidth="1"
-                  />
-                )
-              )}
-
-              <path
-                d={linhaSVG(
-                  pontosAcumulado
-                )}
-                fill="none"
-                stroke="#4d9be8"
-                strokeWidth="3"
-              />
-
-              {pontosAcumulado.map(
-                (ponto, i) => (
-                  <circle
-                    key={i}
-                    cx={ponto.x}
-                    cy={ponto.y}
-                    r="4"
-                    fill="#4d9be8"
-                  />
-                )
-              )}
-
-            </svg>
-
-          </div>
-
-          <div className="chart-months">
-            {MESES.map(
-              mes => (
-                <span key={mes}>
-                  {mes}
-                </span>
-              )
-            )}
-          </div>
-
-        </div>
 
         {/* DESTINO */}
 

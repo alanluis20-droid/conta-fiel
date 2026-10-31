@@ -58,6 +58,7 @@ function App() {
   const [mes, setMes] = useState(mesAtual)
   const [lancamentos, setLancamentos] = useState([])
   const [carregandoDados, setCarregandoDados] = useState(false)
+  const [categoriasExpandidas, setCategoriasExpandidas] = useState({})
 
   const [tipo, setTipo] = useState('saida')
   const [descricao, setDescricao] = useState('')
@@ -1319,63 +1320,61 @@ function App() {
 
                 return (
 
-                  <div
-                    className="category"
-                    key={item.nome}
-                  >
-
-                    <div className="category-head">
-
-                      <div className="category-name">
-
-                        <span
-                          className="dot"
-                          style={{
-                            background:
-                              cor,
-                          }}
-                        />
-
-                        {item.nome}
-
-                      </div>
-
-                      <div className="category-value">
-
-                        <strong>
-                          {formatarMoeda(
-                            item.total
-                          )}
-                        </strong>
-
-                        <span>
-                          {item.percentual
-                            .toFixed(1)
-                            .replace(
-                              '.',
-                              ','
-                            )}
-                          %
+                  <div className="category" key={item.nome}>
+                    <button
+                      type="button"
+                      className="category-toggle"
+                      aria-expanded={Boolean(categoriasExpandidas[item.nome])}
+                      onClick={() => setCategoriasExpandidas(atual => ({
+                        ...atual,
+                        [item.nome]: !atual[item.nome],
+                      }))}
+                    >
+                      <span className="category-head">
+                        <span className="category-name">
+                          <span className="dot" style={{ background: cor }} />
+                          <span>{item.nome}</span>
+                          <span className="category-chevron">
+                            {categoriasExpandidas[item.nome] ? '−' : '+'}
+                          </span>
                         </span>
+                        <span className="category-value">
+                          <strong>{formatarMoeda(item.total)}</strong>
+                          <span>{item.percentual.toFixed(1).replace('.', ',')}%</span>
+                        </span>
+                      </span>
+                      <span className="bar">
+                        <span
+                          className="bar-fill"
+                          style={{ width: `${item.percentual}%`, background: cor }}
+                        />
+                      </span>
+                    </button>
 
+                    {categoriasExpandidas[item.nome] && (
+                      <div className="category-details">
+                        {ordenarLancamentos(dadosMes.filter(registro =>
+                          registro.tipo === 'saida' && registro.categoria === item.nome
+                        )).map(registro => (
+                          <div className="category-expense" key={registro.id}>
+                            <div className="category-expense-info">
+                              <strong>{registro.descricao}</strong>
+                              <small>
+                                {formatarData(registro.data)}
+                                {registro.fixo ? ' · Fixa' : ' · Variável'}
+                              </small>
+                            </div>
+                            <strong className="category-expense-value">
+                              {formatarMoeda(registro.valor)}
+                            </strong>
+                            <div className="transaction-actions">
+                              <button className="edit" type="button" aria-label={`Editar ${registro.descricao}`} onClick={() => iniciarEdicao(registro)}>✎</button>
+                              <button className="delete" type="button" aria-label={`Excluir ${registro.descricao}`} onClick={() => excluirLancamento(registro.id)}>×</button>
+                            </div>
+                          </div>
+                        ))}
                       </div>
-
-                    </div>
-
-                    <div className="bar">
-
-                      <div
-                        className="bar-fill"
-                        style={{
-                          width:
-                            `${item.percentual}%`,
-                          background:
-                            cor,
-                        }}
-                      />
-
-                    </div>
-
+                    )}
                   </div>
 
                 )
@@ -1386,80 +1385,46 @@ function App() {
 
         </section>
 
-        {/* LANÇAMENTOS */}
+        {/* LANÇAMENTOS EM BLOCOS INDEPENDENTES */}
 
-        <section className="card">
-
-          <h2>
-            Lançamentos
-          </h2>
-
-          {carregandoDados ? (
-
-            <div className="empty">
-              Carregando lançamentos...
-            </div>
-
-          ) : (
-
-            <>
-
+        {carregandoDados ? (
+          <section className="card">
+            <div className="empty">Carregando lançamentos...</div>
+          </section>
+        ) : (
+          <>
+            <section className="card statement-card">
               <StatementSection
                 title="Entradas"
                 items={entradas}
-                formatarMoeda={
-                  formatarMoeda
-                }
-                formatarData={
-                  formatarData
-                }
-                iniciarEdicao={
-                  iniciarEdicao
-                }
-                excluirLancamento={
-                  excluirLancamento
-                }
+                formatarMoeda={formatarMoeda}
+                formatarData={formatarData}
+                iniciarEdicao={iniciarEdicao}
+                excluirLancamento={excluirLancamento}
               />
-
+            </section>
+            <section className="card statement-card fixed-expenses-card">
               <StatementSection
                 title="Despesas Fixas"
                 items={fixas}
-                formatarMoeda={
-                  formatarMoeda
-                }
-                formatarData={
-                  formatarData
-                }
-                iniciarEdicao={
-                  iniciarEdicao
-                }
-                excluirLancamento={
-                  excluirLancamento
-                }
+                formatarMoeda={formatarMoeda}
+                formatarData={formatarData}
+                iniciarEdicao={iniciarEdicao}
+                excluirLancamento={excluirLancamento}
               />
-
+            </section>
+            <section className="card statement-card variable-expenses-card">
               <StatementSection
-                title="Variáveis"
+                title="Despesas Variáveis"
                 items={variaveis}
-                formatarMoeda={
-                  formatarMoeda
-                }
-                formatarData={
-                  formatarData
-                }
-                iniciarEdicao={
-                  iniciarEdicao
-                }
-                excluirLancamento={
-                  excluirLancamento
-                }
+                formatarMoeda={formatarMoeda}
+                formatarData={formatarData}
+                iniciarEdicao={iniciarEdicao}
+                excluirLancamento={excluirLancamento}
               />
-
-            </>
-
-          )}
-
-        </section>
+            </section>
+          </>
+        )}
 
         {/* PANORAMA ANUAL */}
 
@@ -1492,9 +1457,12 @@ function StatementSection({
 
     <div className="statement-section">
 
-      <h3>
-        {title}
-      </h3>
+      <div className="statement-heading">
+        <h3>{title}</h3>
+        <strong className="statement-total">
+          {formatarMoeda(items.reduce((total, item) => total + Number(item.valor || 0), 0))}
+        </strong>
+      </div>
 
       {items.length === 0 ? (
 
